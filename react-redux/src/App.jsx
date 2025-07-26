@@ -1,47 +1,20 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import TodoList from "./features/todos/TodoList";
+import AddTodo from "./features/todos/AddTodo";
 import { logOut } from "./features/auth/authSlice";
 import { apiSlice } from "./api/apiSlice";
 
 const App = () => {
-  const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
-
-  const [showLogin, setShowLogin] = React.useState(true);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logOut());
     dispatch(apiSlice.util.resetApiState());
+    navigate("/login");
   };
-
-  if (!token) {
-    return (
-      <div>
-        <h1>RTK Query To-Do App - Please Sign In</h1>
-        {showLogin ? (
-          <>
-            <Login />
-            <p>
-              Don't have an account?{" "}
-              <button onClick={() => setShowLogin(false)}>Sign Up</button>
-            </p>
-          </>
-        ) : (
-          <>
-            <Signup />
-            <p>
-              Already have an account?{" "}
-              <button onClick={() => setShowLogin(true)}>Login</button>
-            </p>
-          </>
-        )}
-      </div>
-    );
-  }
 
   return (
     <div className="App">

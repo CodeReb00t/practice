@@ -4,7 +4,7 @@ import {
   useDeleteTodoMutation,
   useGetTodosQuery,
   useUpdateTodoMutation,
-} from "../api/apiSlice";
+} from "../../api/apiSlice";
 
 const TodoList = () => {
   const token = useSelector((state) => state.auth.token);

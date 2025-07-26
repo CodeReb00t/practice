@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useAddTodoMutation } from '../api/apiSlice';
+import React, { useState } from "react";
+import { useAddTodoMutation } from "../../api/apiSlice";
 
 const AddTodo = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [addTodo] = useAddTodoMutation();
 
   const handleSubmit = async (e) => {
@@ -12,7 +12,7 @@ const AddTodo = () => {
         title,
         completed: false,
       });
-      setTitle('');
+      setTitle("");
     }
   };
 
